@@ -32,4 +32,5 @@ jobs:
             test-results/*
             videos/*
             screenshots/*
+            playwright-report/*
           retention-days: 7
