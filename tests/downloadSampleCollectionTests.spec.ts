@@ -4,7 +4,7 @@ import { HomePage } from "../pages/HomePage"
 import { EMAIL, PASSWORD, DOWNLOAD_PATH } from "../fixtures/testData"
 import fs from 'fs'
 
-test.describe("CAD Drawings downloads tests", () => {
+test.describe("QuickPacks Downloads tests", () => {
    test.beforeEach(async ({ page }) => {
     if (!process.env.CADDETAILS_USERNAME || !process.env.CADDETAILS_PASSWORD) {
       throw new Error("CADDETAILS_USERNAME or CADDETAILS_PASSWORD is not set.")
@@ -13,7 +13,7 @@ test.describe("CAD Drawings downloads tests", () => {
     await homePage.navigateTo()
   });
 
-  test('Authorized user can download sample CAD collection', async ({ page }) => {
+  test('Authorized user can download sample collection', async ({ page }) => {
     const loginPage = new LoginPage(page)
     await loginPage.login(EMAIL, PASSWORD)
     await expect(page.locator('#loginForm')).toBeHidden()
@@ -23,7 +23,7 @@ test.describe("CAD Drawings downloads tests", () => {
     await expect(loginDialog).not.toBeVisible()
   });
   
-  test('Unauthorized user is blocked from downloading sample CAD collection', async ({ page }) => {
+  test('Unauthorized user is blocked from downloading sample collection', async ({ page }) => {
     const homePage = new HomePage(page)
     const download = await homePage.downloadSampleCadCollection('CAD')
     expect(download).toBeNull()
