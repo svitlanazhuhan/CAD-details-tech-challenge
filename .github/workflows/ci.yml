@@ -17,6 +17,10 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Set environment variables
+        run: |
+          echo "CADDETAILS_USERNAME=${{ secrets.CADDETAILS_USERNAME }}" >> $GITHUB_ENV
+          echo "CADDETAILS_PASSWORD=${{ secrets.CADDETAILS_PASSWORD }}" >> $GITHUB_ENV
       - name: Run Playwright tests
         run: npx playwright test
       - name: Upload test report
